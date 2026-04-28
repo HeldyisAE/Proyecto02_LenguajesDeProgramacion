@@ -1,6 +1,6 @@
 module Main where
 
-import UI.Menu
+import UI.MenuPrincipal
 
 main :: IO ()
 main = do

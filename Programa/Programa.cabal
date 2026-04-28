@@ -74,7 +74,8 @@ executable Programa
 
     other-modules:
         Types.Event
-        UI.Menu
+        UI.MenuPrincipal
+        UI.MenuTransformacion
 
     -- Base language which the package is written in.
     default-language: GHC2021
