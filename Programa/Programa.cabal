@@ -72,5 +72,9 @@ executable Programa
     -- Directories containing source files.
     hs-source-dirs:   app, src
 
+    other-modules:
+        Types.Event
+        UI.Menu
+
     -- Base language which the package is written in.
     default-language: GHC2021
