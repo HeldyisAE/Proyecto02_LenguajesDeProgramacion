@@ -73,6 +73,7 @@ executable Programa
     hs-source-dirs:   app, src
 
     other-modules:
+        Data.Generador
         Types.Event
         UI.MenuPrincipal
         UI.MenuTransformacion
