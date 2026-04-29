@@ -1,6 +1,7 @@
 module UI.MenuPrincipal where
 
 import UI.MenuTransformacion
+import UI.MenuAnalisisDatos
 
 menuPrincipal :: IO ()
 menuPrincipal = do
@@ -24,7 +25,8 @@ procesarOpcion opcion =
             menuPrincipal
 
         "2" -> do
-            putStrLn "Analisis de datos [Está pendiente]"
+            putStrLn ""
+            menuAnalisisDatos
             menuPrincipal
 
         "3" -> do

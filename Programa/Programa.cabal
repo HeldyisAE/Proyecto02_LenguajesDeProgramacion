@@ -76,6 +76,7 @@ executable Programa
         Types.Event
         UI.MenuPrincipal
         UI.MenuTransformacion
+        UI.MenuAnalisisDatos
 
     -- Base language which the package is written in.
     default-language: GHC2021
