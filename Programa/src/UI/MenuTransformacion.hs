@@ -1,9 +1,10 @@
 module UI.MenuTransformacion where
 
 import System.IO (hFlush, stdout)
+import Types.Event
 
-menuTransformacion:: IO()
-menuTransformacion = do
+menuTransformacion :: [Event] -> IO()
+menuTransformacion eventos = do
     putStrLn "--- Transformación de eventos ---"
     putStrLn "1. Aplicar impuesto a compras"
     putStrLn "2. Etiquetar eventos de alto valor"
@@ -12,20 +13,21 @@ menuTransformacion = do
     hFlush stdout
     
     op <- getLine
-    procesarTransOp op
+    procesarTransOp op eventos
 
-procesarTransOp :: String -> IO () --Recibe string y retorna una acción del SO
-procesarTransOp opcion =
+procesarTransOp :: String -> [Event] -> IO () --Recibe string y retorna una acción del SO
+procesarTransOp opcion eventos =
     case opcion of
         "1" -> do
             putStrLn "Impuesto a las compras [Está pendiente]"
+            print eventos --Impresión para comprobar funcionamiento
             putStrLn ""
-            menuTransformacion
+            menuTransformacion eventos
 
         "2" -> do
             putStrLn "Etiquetar eventos de alto valor [Está pendiente]"
             putStrLn ""
-            menuTransformacion
+            menuTransformacion eventos
 
         "0" -> do 
             putStrLn ""
@@ -34,5 +36,5 @@ procesarTransOp opcion =
         _ -> do
             putStrLn "Opción inválida"
             putStrLn ""
-            menuTransformacion
+            menuTransformacion eventos
             
