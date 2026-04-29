@@ -1,12 +1,16 @@
 module UI.MenuTransformacion where
 
+import System.IO (hFlush, stdout)
+
 menuTransformacion:: IO()
 menuTransformacion = do
     putStrLn "--- Transformación de eventos ---"
     putStrLn "1. Aplicar impuesto a compras"
     putStrLn "2. Etiquetar eventos de alto valor"
     putStrLn "0. Volver"
-
+    putStr "> "
+    hFlush stdout
+    
     op <- getLine
     procesarTransOp op
 
