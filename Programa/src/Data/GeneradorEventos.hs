@@ -3,15 +3,23 @@ module Data.GeneradorEventos where
 import Types.Event
 import System.Random
 import Data.Time.Clock.POSIX (getPOSIXTime)
+import Data.List (nub)
 
 -- Categorias
 categorias :: [String]
 categorias = ["visualizacion", "apartado", "compra", "devolucion", "seguimiento"]
 
+generarIds :: Int -> IO [Int]
+generarIds n = do
+    ids <- sequence [randomRIO (0, 9000000) | _ <- [1..n]]
+    let idsUnicos = nub ids -- Se eliminan los ids repetidos
+    if length idsUnicos == n -- Se verifica la cantidad solicitada
+        then return idsUnicos
+        else generarIds n
+
 -- Rellena atributos de evento con datos random
-generarEvento :: IO Event
-generarEvento = do
-    idEvento <- randomRIO (0, 9000000) :: IO Int --Numero random entre 0 y 9000000
+generarEvento :: Int -> IO Event
+generarEvento idEvento = do
 
     indiceCat <- randomRIO (0, length categorias - 1) :: IO Int --Elige una categoría al azar
     let cat = categorias !! indiceCat
@@ -27,4 +35,5 @@ generarEvento = do
 generarEventos :: IO [Event]
 generarEventos = do
     cantidad <- randomRIO (10, 25) :: IO Int --Genera una cantidad random de eventos a generar
-    sequence [generarEvento | _ <- [1..cantidad]] --Ejecuta generarEvento n veces
+    ids <- generarIds cantidad
+    sequence [generarEvento idEvento | idEvento <- ids] --Ejecuta generarEvento n veces
