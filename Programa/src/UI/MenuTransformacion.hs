@@ -20,7 +20,6 @@ procesarTransOp opcion eventos =
     case opcion of
         "1" -> do
             putStrLn "Impuesto a las compras [Está pendiente]"
-            print eventos --Impresión para comprobar funcionamiento
             putStrLn ""
             menuTransformacion eventos
 
