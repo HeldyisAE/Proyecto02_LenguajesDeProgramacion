@@ -6,6 +6,7 @@ import Data.GeneradorEventos
 import UI.MenuTransformacion
 import UI.MenuAnalisisDatos
 import UI.MenuAnalisisTemp
+import UI.OpcionBusqueda
 
 menuPrincipal :: [Event] -> IO ()
 menuPrincipal arrEventos = do
@@ -48,7 +49,7 @@ procesarOpcion opcion eventos =
             menuPrincipal eventos
 
         "4" -> do
-            putStrLn "Opciones de búsqueda [Está pendiente]"
+            busquedaPorFecha eventos
             menuPrincipal eventos 
 
         "5" -> do

@@ -77,11 +77,14 @@ executable Programa
 
     other-modules:
         Data.GeneradorEventos
+        Helpers.OperacionesFechas
+        Logic.Busqueda
         Types.Event
         UI.MenuPrincipal
         UI.MenuTransformacion
         UI.MenuAnalisisDatos
         UI.MenuAnalisisTemp
+        UI.OpcionBusqueda
 
     -- Base language which the package is written in.
     default-language: GHC2021
