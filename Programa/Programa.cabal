@@ -67,18 +67,24 @@ executable Programa
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base >= 4.14.0.0
+    build-depends:    base >= 4.14.0.0,time,random
 
     -- Directories containing source files.
     hs-source-dirs:   app, src
 
     other-modules:
-        Data.Generador
+        Data.GeneradorEventos
         Types.Event
+        Logic.AnalisisDatos
+        Logic.Busqueda
+        Logic.Transformacion
+        Helpers.OperacionesDatos
+        Helpers.OperacionesFechas
         UI.MenuPrincipal
         UI.MenuTransformacion
         UI.MenuAnalisisDatos
         UI.MenuAnalisisTemp
+        UI.OpcionBusqueda
 
     -- Base language which the package is written in.
     default-language: GHC2021
