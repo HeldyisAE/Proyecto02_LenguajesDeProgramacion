@@ -1,9 +1,10 @@
 module UI.MenuAnalisisTemp where
 
 import System.IO (hFlush, stdout)
+import Types.Event
 
-menuAnalisisTemp :: IO () 
-menuAnalisisTemp = do
+menuAnalisisTemp :: [Event] -> IO () 
+menuAnalisisTemp eventos = do
     putStrLn "--- Analisis temporal ---"
     putStrLn "1. Maximo monto mensual y frecuencia por dia de semana"
     putStrLn "2. Ver evento (Mas antiguo/Mas reciente)"
@@ -13,25 +14,25 @@ menuAnalisisTemp = do
     hFlush stdout
     
     op <- getLine
-    procesarTempOp op
+    procesarTempOp op eventos
 
-procesarTempOp :: String -> IO ()
-procesarTempOp opcion =
+procesarTempOp :: String -> [Event] -> IO ()
+procesarTempOp opcion eventos =
     case opcion of 
         "1" -> do
             putStrLn "Monto maximo por mes y mas activo de la semana [Está pendiente]"
             putStrLn ""
-            menuAnalisisTemp
+            menuAnalisisTemp eventos
 
         "2" -> do
             putStrLn "Ver evento mas antiguo y mas reciente [Está pendiente]"
             putStrLn ""
-            menuAnalisisTemp
+            menuAnalisisTemp eventos
 
         "3" -> do
             putStrLn "Resumen de los montos [Está pendiente]"
             putStrLn ""
-            menuAnalisisTemp
+            menuAnalisisTemp eventos
 
         "0" -> do
             putStrLn ""
@@ -40,4 +41,4 @@ procesarTempOp opcion =
         _ -> do
             putStrLn "Opción inválida"
             putStrLn ""
-            menuAnalisisTemp
+            menuAnalisisTemp eventos

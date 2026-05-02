@@ -5,4 +5,5 @@ data Event = Event
     , category :: String
     , value     :: Float
     , timestamp :: Int
+    , amount :: Int
     } deriving (Show, Eq)
