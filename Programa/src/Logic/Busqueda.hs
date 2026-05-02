@@ -14,7 +14,7 @@ mostrarEvento evento =
     "Categoria: " ++ category evento ++ "\n" ++
     "Valor: " ++ show (value evento) ++ " colones \n" ++
     "Fecha: " ++ formatearFecha (timestamp evento) ++ "\n" ++
-    "Cantidad: " ++ show (cantidad evento) ++ "\n" ++
+    "Cantidad: " ++ show (amount evento) ++ "\n" ++
     "---------------------------\n"
 
 imprimirEventosPorFecha :: Int -> Int -> [Event] -> IO ()

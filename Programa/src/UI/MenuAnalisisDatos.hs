@@ -2,11 +2,12 @@ module UI.MenuAnalisisDatos where
 
 import System.IO (hFlush, stdout)
 import Types.Event
+import Logic.AnalisisDatos
 
 menuAnalisisDatos :: [Event] -> IO ()
 menuAnalisisDatos eventos = do
     putStrLn "--- Analisis de datos ---"
-    putStrLn "1. Monto total (Importe de todos los eventos)"
+    putStrLn "1. Monto total (Importe total de todos los eventos)"
     putStrLn "2. Promedio anual por categoría"
     putStrLn "0. Volver"
     putStr "> "
@@ -19,12 +20,23 @@ procesarDataOp :: String -> [Event] -> IO ()
 procesarDataOp opcion eventos =
     case opcion of
         "1" -> do
-            putStrLn "Monto total [Está pendiente]"
+            let total = montoTotal eventos
+            putStrLn ""
+            putStrLn "------------------------------"
+            putStrLn $ "Monto total: " ++ show total
+            putStrLn "------------------------------"
             putStrLn ""
             menuAnalisisDatos eventos
 
         "2" -> do
-            putStrLn "Promedio anual por categoria [Está pendiente]"
+            let promedios = promedioCategoriaAnual eventos
+            putStrLn ""
+            putStrLn "   Promedio anual por categoria   "
+            putStrLn "----------------------------------"
+            mapM_ (\(cat, year, prom) -> 
+                putStrLn $ cat ++ " (" ++ show year ++ "): " ++ show prom
+                ) promedios
+            putStrLn "----------------------------------"
             putStrLn ""
             menuAnalisisDatos eventos
 

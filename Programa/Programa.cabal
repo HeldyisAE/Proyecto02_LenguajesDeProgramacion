@@ -78,6 +78,8 @@ executable Programa
     other-modules:
         Data.GeneradorEventos
         Helpers.OperacionesFechas
+        Helpers.OperacionesDatos
+        Logic.AnalisisDatos
         Logic.Busqueda
         Types.Event
         UI.MenuPrincipal
