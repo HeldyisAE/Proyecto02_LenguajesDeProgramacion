@@ -10,10 +10,15 @@ import UI.OpcionBusqueda
 
 menuPrincipal :: [Event] -> IO ()
 menuPrincipal arrEventos = do
-    eventos <- generarEventos --Se generan eventos cada vez que inicia el menu principal
-    let newArrEventos = arrEventos ++ eventos
-
-    mostrarMenu newArrEventos
+    let idIncremental = length arrEventos
+    if idIncremental >= 9000000
+        then do
+            mostrarMenu arrEventos
+        else do
+            eventos <- generarEventos idIncremental --Se generan eventos cada vez que inicia el menu principal
+            let newArrEventos = arrEventos ++ eventos
+            mostrarMenu newArrEventos
+    
 
 mostrarMenu :: [Event] -> IO ()
 mostrarMenu eventos = do 
