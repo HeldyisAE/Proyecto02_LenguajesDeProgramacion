@@ -11,8 +11,12 @@ aplicarImpuesto :: [Event] -> [Event]
 aplicarImpuesto eventos = map transformar eventos
   where
     transformar e
-        | category e == "compra" = e { value = value e * 1.13 }
-        | otherwise              = e
+        -- Cambia 'categoria' por 'category' y 'valor' por 'value'
+        | category e == "compra" && tax e == 0 = 
+            let montoImpuesto = value e * (0.13 :: Float)
+            in e { value = value e + montoImpuesto, tax = montoImpuesto }
+        
+        | otherwise = e
 
 --Etiquetar eventos de alto valor
 eventosAltoValor :: [Event] -> [Event]
