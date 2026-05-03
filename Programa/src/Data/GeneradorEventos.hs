@@ -6,7 +6,8 @@ import Data.Time.Clock.POSIX (getPOSIXTime)
 
 -- Categorias
 categorias :: [String]
-categorias = ["visualizacion", "apartado", "compra", "devolucion", "seguimiento"]
+categorias = ["visualizacion", "visualizacion", "apartado", "apartado", "apartado", "compra", "compra", "compra",
+                "devolucion", "seguimiento"]
 
 generarCantidad :: String -> IO Int
 generarCantidad categoria

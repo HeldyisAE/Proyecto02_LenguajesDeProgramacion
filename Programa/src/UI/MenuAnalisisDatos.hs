@@ -1,6 +1,7 @@
 module UI.MenuAnalisisDatos where
 
 import System.IO (hFlush, stdout)
+import Helpers.HerramientasImpresion
 import Types.Event
 import Logic.AnalisisDatos
 
@@ -24,9 +25,9 @@ procesarDataOp opcion eventos =
             putStrLn ""
             putStrLn "   Desglose del total de importes   "
             putStrLn "------------------------------------"
-            putStrLn $ "Ganancias: " ++ show (ganancias resumen) ++ " colones"
-            putStrLn $ "Devoluciones: " ++ show (devoluciones resumen) ++ " colones"
-            putStrLn $ "Total general: " ++ show (total resumen) ++ " colones"
+            putStrLn $ "Ganancias: " ++ mostrarMonto (ganancias resumen) ++ " colones"
+            putStrLn $ "Devoluciones: " ++ mostrarMonto (devoluciones resumen) ++ " colones"
+            putStrLn $ "Total general: " ++ mostrarMonto (total resumen) ++ " colones"
             putStrLn "------------------------------------"
             putStrLn ""
             menuAnalisisDatos eventos
