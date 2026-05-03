@@ -7,9 +7,26 @@ import Data.Ord (comparing)
 import Data.Time.Clock.POSIX (posixSecondsToUTCTime)
 import Data.Time 
 
+data ResumenFinanciero = ResumenFinanciero
+    { ganancias :: Float
+    , devoluciones :: Float
+    , total :: Float
+    } deriving (Show)
 
 montoTotal :: [Event] -> Float
 montoTotal = sum . map calcularImporte
+
+calcularResumen :: [Event] -> ResumenFinanciero
+calcularResumen eventos = 
+    let eventosSinDevs = filter (\e -> category e /= "devolucion") eventos
+        eventosDev = filter (\e -> category e == "devolucion") eventos
+        totalGanancias = sum (map calcularImporte eventosSinDevs)
+        totalDevoluciones = sum (map calcularImporte eventosDev)
+    in ResumenFinanciero
+        { ganancias = totalGanancias
+        , devoluciones = -totalDevoluciones
+        , total = montoTotal eventos
+        }
 
 extraeYear :: Int -> Integer
 extraeYear timestamp =

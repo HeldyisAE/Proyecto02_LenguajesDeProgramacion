@@ -20,11 +20,14 @@ procesarDataOp :: String -> [Event] -> IO ()
 procesarDataOp opcion eventos =
     case opcion of
         "1" -> do
-            let total = montoTotal eventos
+            let resumen = calcularResumen eventos
             putStrLn ""
-            putStrLn "------------------------------"
-            putStrLn $ "Monto total: " ++ show total
-            putStrLn "------------------------------"
+            putStrLn "   Desglose del total de importes   "
+            putStrLn "------------------------------------"
+            putStrLn $ "Ganancias: " ++ show (ganancias resumen) ++ " colones"
+            putStrLn $ "Devoluciones: " ++ show (devoluciones resumen) ++ " colones"
+            putStrLn $ "Total general: " ++ show (total resumen) ++ " colones"
+            putStrLn "------------------------------------"
             putStrLn ""
             menuAnalisisDatos eventos
 
