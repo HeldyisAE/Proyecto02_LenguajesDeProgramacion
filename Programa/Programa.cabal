@@ -81,6 +81,7 @@ executable Programa
         Logic.AnalisisDatos
         Logic.Busqueda
         Logic.Transformacion
+        Helpers.HerramientasImpresion
         Helpers.OperacionesDatos
         Helpers.OperacionesFechas
         UI.MenuPrincipal
