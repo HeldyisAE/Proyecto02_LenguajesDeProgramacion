@@ -40,8 +40,8 @@ procesarOpcion opcion eventos =
     case opcion of
         "1" -> do
             putStrLn ""
-            menuTransformacion eventos
-            menuPrincipal eventos
+            eventosActualizados <- menuTransformacion eventos
+            menuPrincipal eventosActualizados           
 
         "2" -> do
             putStrLn ""

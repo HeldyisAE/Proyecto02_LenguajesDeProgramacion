@@ -77,12 +77,12 @@ executable Programa
 
     other-modules:
         Data.GeneradorEventos
-        Helpers.HerramientasImpresion
-        Helpers.OperacionesFechas
-        Helpers.OperacionesDatos
+        Types.Event
         Logic.AnalisisDatos
         Logic.Busqueda
-        Types.Event
+        Logic.Transformacion
+        Helpers.OperacionesDatos
+        Helpers.OperacionesFechas
         UI.MenuPrincipal
         UI.MenuTransformacion
         UI.MenuAnalisisDatos

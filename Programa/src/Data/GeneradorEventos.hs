@@ -29,7 +29,7 @@ generarEvento idEvento = do
 
     cantidad <- generarCantidad cat
 
-    return $ Event idEvento cat (fromIntegral valor) timestamp cantidad
+    return $ Event idEvento cat (fromIntegral valor) timestamp cantidad 0.0
 
 generarEventos :: Int -> IO [Event]
 generarEventos incrementalId = do
