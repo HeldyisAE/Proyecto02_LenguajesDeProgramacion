@@ -67,22 +67,19 @@ executable Programa
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    
-        base ^>=4.18.3.0,
-        random,
-        time
+    build-depends:    base >= 4.14.0.0,time,random
 
     -- Directories containing source files.
     hs-source-dirs:   app, src
 
     other-modules:
         Data.GeneradorEventos
-        Helpers.HerramientasImpresion
-        Helpers.OperacionesFechas
-        Helpers.OperacionesDatos
+        Types.Event
         Logic.AnalisisDatos
         Logic.Busqueda
-        Types.Event
+        Logic.Transformacion
+        Helpers.OperacionesDatos
+        Helpers.OperacionesFechas
         UI.MenuPrincipal
         UI.MenuTransformacion
         UI.MenuAnalisisDatos

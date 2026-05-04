@@ -2,38 +2,41 @@ module UI.MenuTransformacion where
 
 import System.IO (hFlush, stdout)
 import Types.Event
+import Logic.Transformacion
+import Logic.Busqueda (mostrarEvento)
 
-menuTransformacion :: [Event] -> IO()
+menuTransformacion :: [Event] -> IO [Event]
 menuTransformacion eventos = do
-    putStrLn "--- Transformación de eventos ---"
-    putStrLn "1. Aplicar impuesto a compras"
+    putStrLn "\n--- Transformación de eventos ---"
+    putStrLn "1. Aplicar impuesto a compras (13%)"
     putStrLn "2. Etiquetar eventos de alto valor"
     putStrLn "0. Volver"
     putStr "> "
     hFlush stdout
     
-    op <- getLine
-    procesarTransOp op eventos
+    opcion <- getLine
+    procesarTransOp opcion eventos
 
-procesarTransOp :: String -> [Event] -> IO () --Recibe string y retorna una acción del SO
+procesarTransOp :: String -> [Event] -> IO [Event]
 procesarTransOp opcion eventos =
     case opcion of
         "1" -> do
-            putStrLn "Impuesto a las compras [Está pendiente]"
-            putStrLn ""
-            menuTransformacion eventos
+            let eventosTransformados = aplicarImpuesto eventos
+            putStrLn "\n[!] Impuesto(13%) aplicado a las compras."
+            menuTransformacion eventosTransformados
 
         "2" -> do
-            putStrLn "Etiquetar eventos de alto valor [Está pendiente]"
-            putStrLn ""
+            -- Filtra los eventos que superan el promedio
+            let altosValores = eventosAltoValor eventos
+            putStrLn "\n--- Eventos de Alto Valor---"
+            if null altosValores
+                then putStrLn "No hay eventos que superen el promedio actual."
+                else mapM_ (putStr . mostrarEvento) altosValores
             menuTransformacion eventos
 
-        "0" -> do 
-            putStrLn ""
-            return ()
+        "0" -> do
+            return eventos
 
         _ -> do
-            putStrLn "Opción inválida"
-            putStrLn ""
+            putStrLn "Opción inválida."
             menuTransformacion eventos
-            
