@@ -25,6 +25,9 @@ timestampConvertir :: UTCTime -> Int
 timestampConvertir fecha = 
     round (utcTimeToPOSIXSeconds fecha) -- Convierte de fecha a segundos
 
+timestampToUTC :: Int -> UTCTime
+timestampToUTC timestamp = posixSecondsToUTCTime (fromIntegral timestamp)
+
 convertirFecha :: String -> Maybe Int 
 convertirFecha str =
     if not (formatoValido str)

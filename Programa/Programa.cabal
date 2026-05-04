@@ -79,11 +79,13 @@ executable Programa
         Data.GeneradorEventos
         Types.Event
         Logic.AnalisisDatos
+        Logic.AnalisisTemporal
         Logic.Busqueda
         Logic.Transformacion
         Helpers.HerramientasImpresion
         Helpers.OperacionesDatos
         Helpers.OperacionesFechas
+        Helpers.OperacionesTemporales
         UI.MenuPrincipal
         UI.MenuTransformacion
         UI.MenuAnalisisDatos

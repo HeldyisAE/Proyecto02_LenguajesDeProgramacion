@@ -2,6 +2,7 @@ module UI.MenuAnalisisTemp where
 
 import System.IO (hFlush, stdout)
 import Types.Event
+import Logic.AnalisisTemporal
 
 menuAnalisisTemp :: [Event] -> IO () 
 menuAnalisisTemp eventos = do
@@ -20,8 +21,8 @@ procesarTempOp :: String -> [Event] -> IO ()
 procesarTempOp opcion eventos =
     case opcion of 
         "1" -> do
-            putStrLn "Monto maximo por mes y mas activo de la semana [Está pendiente]"
             putStrLn ""
+            analizarMensualYDiario eventos
             menuAnalisisTemp eventos
 
         "2" -> do
