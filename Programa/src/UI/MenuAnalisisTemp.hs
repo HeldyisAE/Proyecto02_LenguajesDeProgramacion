@@ -7,8 +7,8 @@ import Logic.AnalisisTemporal
 menuAnalisisTemp :: [Event] -> IO () 
 menuAnalisisTemp eventos = do
     putStrLn "--- Analisis temporal ---"
-    putStrLn "1. Maximo monto mensual y frecuencia por dia de semana"
-    putStrLn "2. Ver evento (Mas antiguo/Mas reciente)"
+    putStrLn "1. Maximo monto mensual y dia más activo"
+    putStrLn "2. Ver evento más reciente y más antiguo"
     putStrLn "3. Resumen de montos por intervalo"
     putStrLn "0. Volver"
     putStr "> "
@@ -26,8 +26,8 @@ procesarTempOp opcion eventos =
             menuAnalisisTemp eventos
 
         "2" -> do
-            putStrLn "Ver evento mas antiguo y mas reciente [Está pendiente]"
             putStrLn ""
+            obtenerEventosExtremos eventos
             menuAnalisisTemp eventos
 
         "3" -> do

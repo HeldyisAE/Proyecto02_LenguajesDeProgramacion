@@ -6,6 +6,7 @@ import Data.Ord
 import Types.Event (Event(..))
 import Helpers.OperacionesTemporales
 import Logic.AnalisisDatos (montoTotal)
+import Logic.Busqueda
 
 ---------------------------------------Mes con mayor monto y dia de la semana más activo-------------------------------------------
 
@@ -66,4 +67,16 @@ imprimirResultado r = do
     mapM_ imprimirEvento (eventosDia r)
     putStrLn ""
 
----------------------------------------Mes con mayor monto y dia de la semana más activo-------------------------------------------
+---------------------------------------Evento más antiguo y más reciente-------------------------------------------
+
+obtenerEventosExtremos :: [Event] -> IO ()
+obtenerEventosExtremos eventos = do 
+    let antiguo = minimumBy (comparing timestamp) eventos
+        reciente = maximumBy (comparing timestamp) eventos
+    putStrLn "--- Evento más antiguo ---"
+    putStr (mostrarEvento antiguo)
+    putStrLn ""
+    putStrLn "--- Evento más reciente ---"
+    putStr (mostrarEvento reciente)
+    putStrLn ""
+

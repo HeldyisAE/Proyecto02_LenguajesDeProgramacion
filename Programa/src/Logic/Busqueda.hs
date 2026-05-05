@@ -15,6 +15,7 @@ mostrarEvento evento =
     "Valor: " ++ show (value evento) ++ " colones \n" ++
     "Fecha: " ++ formatearFecha (timestamp evento) ++ "\n" ++
     "Cantidad: " ++ show (amount evento) ++ "\n" ++
+    "Impuesto aplicado: " ++ show (tax evento) ++ "\n" ++
     "---------------------------\n"
 
 imprimirEventosPorFecha :: Int -> Int -> [Event] -> IO ()
