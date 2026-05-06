@@ -1,3 +1,8 @@
+{-
+Módulo: UI.MenuEstadisticas
+Descripción: Contiene la interfaz de usuario para la visualización de estadísticas generales
+    de los eventos y la exportación de reportes
+-}
 module UI.MenuEstadisticas where
 
 import System.IO (hFlush, stdout)
@@ -5,6 +10,17 @@ import Types.Event
 import Logic.Estadisticas
 import Logic.Busqueda (mostrarEvento)
 
+{-
+Nombre: menuEstadisticas
+
+Esta función se encarga de mostrar un resumen estadístico de los eventos en consola,
+    incluyendo cantidad por categoría, eventos extremos y el día más activo.
+    Además, permite exportar el reporte en formato JSON.
+
+Parámetros: Recibe una lista de valores de tipo Event
+
+Retorno: Devuelve un tipo IO (), que representa una acción de interacción en consola
+-}
 menuEstadisticas :: [Event] -> IO ()
 menuEstadisticas [] = do
     putStrLn "No hay eventos cargados"
