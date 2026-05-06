@@ -5,6 +5,7 @@ Descripción: Implementa la función main para la ejecución correcta del progra
 module Main where
 
 import UI.MenuPrincipal 
+import Data.Registro
 
 {-
 Nombre: main
@@ -16,4 +17,5 @@ Retorna:
 -}
 main :: IO ()
 main = do
-    menuPrincipal []
+    eventos <- cargarEventos
+    menuPrincipal eventos

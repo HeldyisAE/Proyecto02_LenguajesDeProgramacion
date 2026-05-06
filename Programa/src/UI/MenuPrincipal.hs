@@ -8,6 +8,7 @@ module UI.MenuPrincipal where
 import System.IO (hFlush, stdout)
 import Types.Event
 import Data.GeneradorEventos
+import Data.Registro
 import UI.MenuTransformacion
 import UI.MenuAnalisisDatos
 import UI.MenuAnalisisTemp
@@ -98,6 +99,7 @@ procesarOpcion opcion eventos =
             menuPrincipal eventos
 
         "0" -> do
+            guardarEventos eventos
             putStrLn "Saliendo del programa..."
 
         _ -> do
