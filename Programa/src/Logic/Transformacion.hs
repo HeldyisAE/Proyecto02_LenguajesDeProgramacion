@@ -1,7 +1,6 @@
 module Logic.Transformacion where
 
 import Types.Event
-import Logic.AnalisisDatos (promedioCategoriaAnual)
 
 --Aplicar impuesto(13%)
 -- En esta se maneja la lista de eventos y cuando se calcula todo lo que devuelve es la lista pero con los cambios aplicados
