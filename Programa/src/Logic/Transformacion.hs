@@ -18,12 +18,16 @@ aplicarImpuesto eventos = map transformar eventos
         | otherwise = e
 
 --Etiquetar eventos de alto valor
+-- revisa en la lista los de mayor al promedio pero ademas para saber cuales son nuevos eventos se agrega tag que viene en
+-- false y se cambia a true si el evento es mayor al promedio y asi se mantiene la lista actualizada
 eventosAltoValor :: [Event] -> [Event]
-eventosAltoValor eventos = 
-    filter (\e -> value e > obtenerPromedio (category e)) eventos
-  where
-    promedios = promedioCategoriaAnual eventos 
-    obtenerPromedio cat = 
-        case filter (\(c, _, _) -> c == cat) promedios of
-            ((_, _, p):_) -> p
-            []            -> 0
+eventosAltoValor eventos =
+    let 
+        valores = map value eventos
+        promedio = sum valores / fromIntegral (length valores)
+        
+        marcar e = if tag e || value e > promedio 
+                   then e { tag = True } 
+                   else e
+    in 
+        map marcar eventos

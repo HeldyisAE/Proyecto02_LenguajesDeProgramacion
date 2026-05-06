@@ -7,4 +7,5 @@ data Event = Event
     , timestamp :: Int
     , amount    :: Int
     , tax       :: Float
+    , tag       :: Bool
     } deriving (Show, Eq)
