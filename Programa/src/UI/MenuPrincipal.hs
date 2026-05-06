@@ -7,6 +7,7 @@ import UI.MenuTransformacion
 import UI.MenuAnalisisDatos
 import UI.MenuAnalisisTemp
 import UI.OpcionBusqueda
+import UI.MenuEstadisticas
 
 menuPrincipal :: [Event] -> IO ()
 menuPrincipal arrEventos = do
@@ -58,7 +59,7 @@ procesarOpcion opcion eventos =
             menuPrincipal eventos 
 
         "5" -> do
-            putStrLn "Estadisticas [Está pendiente]"
+            menuEstadisticas eventos
             menuPrincipal eventos
 
         "0" -> do
