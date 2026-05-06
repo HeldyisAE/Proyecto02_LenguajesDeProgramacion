@@ -18,19 +18,12 @@ aplicarImpuesto eventos = map transformar eventos
         | otherwise = e
 
 --Etiquetar eventos de alto valor
--- actualiza las etiquetas de los de alto valor para saber cuales si y cuales no con elo booleano
 eventosAltoValor :: [Event] -> [Event]
-eventosAltoValor eventos = map etiquetar eventos
+eventosAltoValor eventos = 
+    filter (\e -> value e > obtenerPromedio (category e)) eventos
   where
-    promedios = promedioCategoriaAnual eventos
-    
+    promedios = promedioCategoriaAnual eventos 
     obtenerPromedio cat = 
         case filter (\(c, _, _) -> c == cat) promedios of
             ((_, _, p):_) -> p
             []            -> 0
-
-    etiquetar e =
-        let promedio = obtenerPromedio (category e)
-        in if value e > promedio
-           then e { tag = True }
-           else e
