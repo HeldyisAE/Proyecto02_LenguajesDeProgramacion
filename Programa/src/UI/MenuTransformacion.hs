@@ -1,3 +1,8 @@
+{-
+Módulo: UI.MenuTransformacion
+Descripción: Contiene la interfaz de usuario para la transformación de eventos,
+    permitiendo aplicar modificaciones y visualizar resultados
+-}
 module UI.MenuTransformacion where
 
 import System.IO (hFlush, stdout)
@@ -5,6 +10,16 @@ import Types.Event
 import Logic.Transformacion
 import Logic.Busqueda (mostrarEvento)
 
+{-
+Nombre: menuTransformacion
+
+Esta función se encarga de mostrar el menú de transformación de eventos en consola,
+    permitiendo al usuario seleccionar diferentes operaciones sobre la lista de eventos.
+
+Parámetros: Recibe una lista de valores de tipo Event
+
+Retorno: Devuelve un tipo IO [Event], que representa una acción que produce la lista de eventos actualizada
+-}
 menuTransformacion :: [Event] -> IO [Event]
 menuTransformacion eventos = do
     putStrLn "\n--- Transformación de eventos ---"
@@ -17,6 +32,17 @@ menuTransformacion eventos = do
     opcion <- getLine
     procesarTransOp opcion eventos
 
+{-
+Nombre: procesarTransOp
+
+Esta función se encarga de procesar la opción seleccionada por el usuario
+    dentro del menú de transformación, aplicando la lógica correspondiente.
+
+Parámetros: Recibe un valor de tipo String que representa la opción ingresada
+    y una lista de valores de tipo Event
+
+Retorno: Devuelve un tipo IO [Event], que representa una acción que produce la lista de eventos resultante
+-}
 procesarTransOp :: String -> [Event] -> IO [Event]
 procesarTransOp opcion eventos =
     case opcion of

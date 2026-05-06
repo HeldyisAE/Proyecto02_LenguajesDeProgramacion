@@ -1,11 +1,22 @@
+{-
+Módulo: Logic.Transformacion
+Descripción: Contiene funciones para la transformación de eventos, incluyendo la aplicación de impuestos
+    y la identificación de eventos de alto valor
+-}
 module Logic.Transformacion where
 
 import Types.Event
 
---Aplicar impuesto(13%)
--- En esta se maneja la lista de eventos y cuando se calcula todo lo que devuelve es la lista pero con los cambios aplicados
--- tecnicamente lo que hace es a partir de la lista original va creando una con los cambios 
--- y esa es la que manda de vuelta al menu
+{-
+Nombre: aplicarImpuesto
+
+Esta función se encarga de aplicar un impuesto del 13% a los eventos de tipo compra
+    que no tengan un impuesto previamente aplicado, generando una nueva lista con los cambios.
+
+Parámetros: Recibe una lista de valores de tipo Event
+
+Retorno: Devuelve una lista de valores de tipo Event con el impuesto aplicado cuando corresponde
+-}
 aplicarImpuesto :: [Event] -> [Event]
 aplicarImpuesto eventos = map transformar eventos
   where
@@ -16,9 +27,16 @@ aplicarImpuesto eventos = map transformar eventos
         
         | otherwise = e
 
---Etiquetar eventos de alto valor
--- revisa en la lista los de mayor al promedio pero ademas para saber cuales son nuevos eventos se agrega tag que viene en
--- false y se cambia a true si el evento es mayor al promedio y asi se mantiene la lista actualizada
+{-
+Nombre: eventosAltoValor
+
+Esta función se encarga de identificar los eventos cuyo valor supera el promedio de su categoría,
+    considerando los promedios calculados de forma anual.
+
+Parámetros: Recibe una lista de valores de tipo Event
+
+Retorno: Devuelve una lista de valores de tipo Event que representan los eventos de alto valor
+-}
 eventosAltoValor :: [Event] -> [Event]
 eventosAltoValor eventos =
     let 

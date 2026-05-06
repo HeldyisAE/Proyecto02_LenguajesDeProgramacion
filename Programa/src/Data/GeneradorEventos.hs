@@ -1,20 +1,42 @@
+{-
+Módulo: Data.GeneradorEventos
+Descripción: Contiene la lógica para la generación dinámica de eventos
+-}
 module Data.GeneradorEventos where
 
 import Types.Event
 import System.Random
 import Data.Time.Clock.POSIX (getPOSIXTime)
 
--- Categorias
+-- Categorias disponibles en el sistema
 categorias :: [String]
 categorias = ["visualizacion", "visualizacion", "apartado", "apartado", "apartado", "compra", "compra", "compra",
                 "devolucion", "seguimiento"]
 
+{-
+Nombre: generarCantidad
+
+Genera un número aleatorio entre 1 y 50 en función de la categoría del evento,
+    para visualización y seguimiento se inicia en 1 por interpretación lógica.
+
+Parámetros: Recibe un String
+
+Retorno: Retorna un valor de tipo IO Int que devuelve una acción numérica
+-}
 generarCantidad :: String -> IO Int
 generarCantidad categoria
     | categoria `elem` ["apartado", "compra", "devolucion"] = randomRIO (1, 50)
     | otherwise = return 1
 
--- Rellena atributos de evento con datos random
+{-
+Nombre: generarEvento
+
+Esta función se encarga de rellenar los espacios de los atributos de un evento y devolver una instancia evento
+
+Parámetros: Recibe un número entero, que corresponde al ID del evento
+
+Retorno: Devuelve un tipo IO Evento, que representa una acción secundaria de tipo Event
+-}
 generarEvento :: Int -> IO Event
 generarEvento idEvento = do
 
@@ -31,6 +53,15 @@ generarEvento idEvento = do
 
     return $ Event idEvento cat (fromIntegral valor) timestamp cantidad 0.0 False
 
+{-
+Nombre: generarEventos
+
+Esta función se encarga de generar dinámicamente un conjunto de eventos con un intervalo entre 10 y 25
+
+Parámetros: Recibe un entero, que corresponde al ID incremental de los eventos
+
+Retorno: Devuelve un tipo IO de una lista de eventos
+-}
 generarEventos :: Int -> IO [Event]
 generarEventos incrementalId = do
     cantidadEventos <- randomRIO (10, 25) :: IO Int --Genera una cantidad random de eventos a generar

@@ -1,3 +1,8 @@
+{-
+Módulo: UI.MenuAnalisisDatos
+Descripción: Contiene la interfaz de usuario para el análisis de datos, permitiendo visualizar
+    métricas como el monto total y promedios por categoría
+-}
 module UI.MenuAnalisisDatos where
 
 import System.IO (hFlush, stdout)
@@ -5,6 +10,16 @@ import Helpers.HerramientasImpresion
 import Types.Event
 import Logic.AnalisisDatos
 
+{-
+Nombre: menuAnalisisDatos
+
+Esta función se encarga de mostrar el menú de análisis de datos en consola,
+    permitiendo al usuario seleccionar diferentes opciones de análisis.
+
+Parámetros: Recibe una lista de valores de tipo Event
+
+Retorno: Devuelve un tipo IO (), que representa una acción de interacción en consola
+-}
 menuAnalisisDatos :: [Event] -> IO ()
 menuAnalisisDatos eventos = do
     putStrLn "--- Analisis de datos ---"
@@ -17,6 +32,17 @@ menuAnalisisDatos eventos = do
     op <- getLine
     procesarDataOp op eventos
 
+{-
+Nombre: procesarDataOp
+
+Esta función se encarga de procesar la opción seleccionada por el usuario
+    dentro del menú de análisis de datos, ejecutando la acción correspondiente.
+
+Parámetros: Recibe un valor de tipo String que representa la opción ingresada
+    y una lista de valores de tipo Event
+
+Retorno: Devuelve un tipo IO (), que representa una acción de interacción en consola
+-}
 procesarDataOp :: String -> [Event] -> IO ()
 procesarDataOp opcion eventos =
     case opcion of
