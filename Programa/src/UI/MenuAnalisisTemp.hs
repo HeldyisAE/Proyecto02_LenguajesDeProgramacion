@@ -1,3 +1,8 @@
+{-
+Módulo: UI.MenuAnalisisTemp
+Descripción: Contiene la interfaz de usuario para el análisis temporal de eventos,
+    permitiendo consultar métricas por mes, día e intervalos de tiempo
+-}
 module UI.MenuAnalisisTemp where
 
 import System.IO (hFlush, stdout)
@@ -5,6 +10,16 @@ import Types.Event
 import Logic.AnalisisTemporal
 import Helpers.OperacionesTemporales (obtenerTotalDias)
 
+{-
+Nombre: menuAnalisisTemp
+
+Esta función se encarga de mostrar el menú de análisis temporal en consola,
+    permitiendo al usuario seleccionar diferentes opciones relacionadas con el tiempo de los eventos.
+
+Parámetros: Recibe una lista de valores de tipo Event
+
+Retorno: Devuelve un tipo IO (), que representa una acción de interacción en consola
+-}
 menuAnalisisTemp :: [Event] -> IO () 
 menuAnalisisTemp eventos = do
     putStrLn "--- Analisis temporal ---"
@@ -18,6 +33,17 @@ menuAnalisisTemp eventos = do
     op <- getLine
     procesarTempOp op eventos
 
+{-
+Nombre: procesarTempOp
+
+Esta función se encarga de procesar la opción seleccionada por el usuario
+    dentro del menú de análisis temporal, ejecutando la acción correspondiente.
+
+Parámetros: Recibe un valor de tipo String que representa la opción ingresada
+    y una lista de valores de tipo Event
+
+Retorno: Devuelve un tipo IO (), que representa una acción de interacción en consola
+-}
 procesarTempOp :: String -> [Event] -> IO ()
 procesarTempOp opcion eventos =
     case opcion of 
