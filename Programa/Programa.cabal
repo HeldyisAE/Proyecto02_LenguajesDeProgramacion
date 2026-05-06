@@ -85,6 +85,7 @@ executable Programa
         Helpers.HerramientasImpresion
         Helpers.OperacionesDatos
         Helpers.OperacionesFechas
+        Helpers.OperacionesTemporales
         UI.MenuPrincipal
         UI.MenuTransformacion
         UI.MenuAnalisisDatos

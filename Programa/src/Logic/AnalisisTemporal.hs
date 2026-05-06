@@ -1,4 +1,5 @@
-module Logic.AnalisisTemp where
+module Logic.AnalisisTemporal where
+
 
 import Data.List
 import Data.Ord
