@@ -83,7 +83,7 @@ Retorno: Devuelve un tipo IO (), que representa una acción de salida en consola
 -}
 imprimirMes :: ((Integer, Int), Float) -> IO ()
 imprimirMes ((y, m), monto) =
-    putStrLn $ "  " ++ nombreMes m ++ " " ++ show y ++ " --- " ++ show monto ++ " Colones"
+    putStrLn $ "  " ++ nombreMes m ++ " " ++ show y ++ " --- " ++ mostrarMonto monto ++ " Colones"
 
 {-
 Nombre: imprimirDia
