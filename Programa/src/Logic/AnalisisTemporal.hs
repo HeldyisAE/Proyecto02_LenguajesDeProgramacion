@@ -7,6 +7,7 @@ import Types.Event (Event(..))
 import Helpers.OperacionesTemporales
 import Logic.AnalisisDatos (montoTotal)
 import Logic.Busqueda
+import Helpers.HerramientasImpresion (mostrarMonto)
 
 ---------------------------------------Mes con mayor monto y dia de la semana más activo-------------------------------------------
 
@@ -55,3 +56,37 @@ obtenerEventosExtremos eventos = do
     putStr (mostrarEvento reciente)
     putStrLn ""
 
+---------------------------------------Resumen por intervalo-------------------------------------------
+
+resumenPorIntervalo :: [Event] -> Int -> IO ()
+resumenPorIntervalo eventos intervalo =
+    let tsMin = minimum (map timestamp eventos)
+        tsMax = maximum (map timestamp eventos)
+        bloques = generarBloques tsMin tsMax (intervalo * 86400)
+        resultados = map (resumenBloque eventos) bloques
+    in do 
+        putStrLn $ "Intervalo: " ++ show intervalo ++ " días"
+        putStrLn (replicate 55 '-')
+        mapM_ imprimirBloque resultados
+
+generarBloques :: Int -> Int -> Int -> [(Int, Int)]
+generarBloques inicio fin size 
+    | inicio > fin = []
+    | otherwise =
+        let finBloque = min (inicio + size - 1) fin 
+        in (inicio, finBloque) : generarBloques (inicio + size) fin size
+
+resumenBloque :: [Event] -> (Int, Int) -> (String, String, Int, Float)
+resumenBloque eventos (inicio, fin) = 
+    let rango = filter (\e -> timestamp e >= inicio && timestamp e <= fin) eventos
+        cantidadEventos = length rango 
+        monto = montoTotal rango 
+        fechaInicio = extraerFechaExacta inicio 
+        fechaFin = extraerFechaExacta fin 
+    in (fechaInicio, fechaFin, cantidadEventos, monto)
+
+imprimirBloque :: (String, String, Int, Float) -> IO ()
+imprimirBloque (fechaInicio, fechaFin, cantidadEventos, monto) =
+    putStrLn $ "Del " ++ fechaInicio ++ " al " ++ fechaFin
+            ++ " | " ++ show cantidadEventos ++ " eventos"
+            ++ " | " ++ mostrarMonto monto ++ " Colones"

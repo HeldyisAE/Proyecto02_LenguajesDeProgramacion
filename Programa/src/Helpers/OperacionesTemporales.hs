@@ -6,6 +6,7 @@ import Data.List (groupBy, sortBy)
 import Data.Ord (comparing)
 import Data.Function (on)
 import Helpers.OperacionesFechas
+import Types.Event
 
 extraerAnioMes :: Int -> (Integer, Int)
 extraerAnioMes timestamp =
@@ -49,3 +50,11 @@ agruparPor f xs =
     . groupBy ((==) `on` f)
     . sortBy (comparing f)
     $ xs
+
+obtenerTotalDias :: [Event] -> Integer
+obtenerTotalDias eventos =
+    let tiempos = map timestamp eventos
+        tsMin = minimum tiempos
+        tsMax = maximum tiempos
+        diferencia = tsMax - tsMin
+    in fromIntegral (diferencia `div` 86400)

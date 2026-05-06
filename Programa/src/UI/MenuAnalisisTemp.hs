@@ -3,6 +3,7 @@ module UI.MenuAnalisisTemp where
 import System.IO (hFlush, stdout)
 import Types.Event
 import Logic.AnalisisTemporal
+import Helpers.OperacionesTemporales (obtenerTotalDias)
 
 menuAnalisisTemp :: [Event] -> IO () 
 menuAnalisisTemp eventos = do
@@ -31,7 +32,15 @@ procesarTempOp opcion eventos =
             menuAnalisisTemp eventos
 
         "3" -> do
-            putStrLn "Resumen de los montos [Está pendiente]"
+            let total = obtenerTotalDias eventos
+            putStrLn ""
+            putStr $ "Ingrese el intervalo en días (1 - " ++ show total ++ "): "
+            hFlush stdout
+            input <- getLine
+            case reads input of
+                [(n, "")] | n > 0 && n <= total ->
+                    resumenPorIntervalo eventos (fromIntegral n)
+                _ -> putStrLn $ "Intervalo inválido. Debe ser un entero entre 1 y " ++ show total
             putStrLn ""
             menuAnalisisTemp eventos
 
