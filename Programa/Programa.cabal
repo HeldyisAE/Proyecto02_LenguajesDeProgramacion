@@ -91,6 +91,8 @@ executable Programa
         UI.MenuAnalisisDatos
         UI.MenuAnalisisTemp
         UI.OpcionBusqueda
+        Logic.Estadisticas
+        UI.MenuEstadisticas
 
     -- Base language which the package is written in.
     default-language: GHC2021

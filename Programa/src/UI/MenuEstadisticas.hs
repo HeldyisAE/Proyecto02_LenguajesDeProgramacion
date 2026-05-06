@@ -6,12 +6,17 @@ import Logic.Estadisticas
 import Logic.Busqueda (mostrarEvento)
 
 menuEstadisticas :: [Event] -> IO ()
-menuEstadisticas [] = putStrLn "No hay eventos cargados"
+menuEstadisticas [] = do
+    putStrLn "No hay eventos cargados"
+    putStrLn "Presione Enter para volver..."
+    _ <- getLine
+    return ()
+
 menuEstadisticas eventos = do
     let (cats, (alto, bajo), (dia, cant)) = obtenerResumen eventos
     
     putStrLn "\n========================================"
-    putStrLn "              ESTADISTICAS"
+    putStrLn "       RESUMEN DE ESTADISTICAS"
     putStrLn "========================================"
     putStrLn "Eventos por Categoria:"
     mapM_ (\(c, n) -> putStrLn $ " - " ++ c ++ ": " ++ show n) cats
@@ -25,16 +30,19 @@ menuEstadisticas eventos = do
     putStrLn $ "Dia mas activo: " ++ dia ++ " (" ++ show cant ++ " eventos)"
     putStrLn "========================================"
     
-    putStrLn "\n¿Desea exportar el reporte completo a JSON?"
+    putStrLn "\n¿Desea exportar el reporte a JSON?"
     putStrLn "1. Si"
     putStrLn "0. No"
     putStr "> "
     hFlush stdout
     
     op <- getLine
-    if op == "1" 
-        then do
-            writeFile "reporte.json" (generarJSON cats (alto, bajo) (dia, cant))
-            putStrLn "\n[!] 'reporte.json' guardado."
-            getLine >> return ()
-        else return ()
+    case op of
+        "1" -> do
+            let contenido = generarJSON cats (alto, bajo) (dia, cant)
+            writeFile "reporte.json" contenido
+            putStrLn "\n[!] 'reporte.json' creado."
+            putStrLn "Presione Enter para continuar..."
+            _ <- getLine
+            return ()
+        _ -> return ()

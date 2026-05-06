@@ -1,0 +1,25 @@
+{
+  "reporte_estadisticas": {
+    "conteo_categorias": [
+      {"categoria": "apartado", "cantidad": 9},
+      {"categoria": "compra", "cantidad": 10},
+      {"categoria": "devolucion", "cantidad": 3},
+      {"categoria": "seguimiento", "cantidad": 6},
+      {"categoria": "visualizacion", "cantidad": 3}
+    ],
+    "evento_monto_maximo": {
+      "id": 29,
+      "valor": 73156.00,
+      "fecha": "22/04/2028"
+    },
+    "evento_monto_minimo": {
+      "id": 20,
+      "valor": 8642.00,
+      "fecha": "06/05/2027"
+    },
+    "dia_mas_activo": {
+      "fecha": "30/03/2028",
+      "total_eventos": 1
+    }
+  }
+}
