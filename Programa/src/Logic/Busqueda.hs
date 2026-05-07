@@ -58,4 +58,6 @@ Retorno: Devuelve un tipo IO (), que representa una acción de salida en consola
 imprimirEventosPorFecha :: Int -> Int -> [Event] -> IO ()
 imprimirEventosPorFecha inicio fin eventos = do
     let eventosFiltrados = filtrarFecha inicio fin eventos
-    mapM_ (putStr . mostrarEvento) eventosFiltrados --Imprime cada evento hacia abajo
+    if null eventosFiltrados 
+        then putStrLn "No se encontraron eventos en el rango indicado"
+        else mapM_ (putStr . mostrarEvento) eventosFiltrados --Imprime cada evento hacia abajo
